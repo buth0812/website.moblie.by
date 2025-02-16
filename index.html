@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendVerse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative; /* Required for absolute positioning of the logo */
+        }
+
+        .back-btn {
+            text-transform: uppercase;
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-transform: uppercase;
+            font-size: 24px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .cart-btn {
+            background-color: #120501;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .cart-btn:hover {
+            background-color: #d63c00;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 20px;
+            padding: 20px;
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 800px; /* Adjust as needed */
+        }
+
+        .product {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .product a:hover {
+            color: #ff4500;
+        }
+
+        .product img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        h3 {
+            font-size: 16px;
+            margin: 10px 0 5px;
+        }
+
+        .price {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .time {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="time" id="current-time"></div></a>
+      
+        <a href="" class="logo"> TrendVerse </a>
+        
+      
+    </header>
+    <div class="products">
+        <div class="product">
+            <a href="index1.html">
+                <img src="https://kdmv.io/cdn/shop/files/fixed_photos_0002_5-2.jpg?v=1734606419&width=720" alt="DHL Pocket Tee Black">
+                <h3>DHL Pocket Tee Black</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index2.html">
+                <img src="https://kdmv.io/cdn/shop/files/HOODIES_0001_3-1.jpg?v=1734502245&width=720" alt="KDMV IS THE FUTURE HOODIE">
+                <h3>KDMV IS THE FUTURE HOODIE </h3>
+            </a>
+            <p class="price">$42.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index3.html">
+                <img src="https://kdmv.io/cdn/shop/files/2-4.png?v=1738001495&width=990" alt="L'ART DE K.D.M.V HATS BLAC">
+                <h3>L'ART DE K.D.M.V HATS BLACK</h3>
+            </a>
+            <p class="price">$28.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index4.html">
+                <img src="https://kdmv.io/cdn/shop/files/2-4_0c392b65-d9d0-45ef-a7e3-92e58c5f4a80.png?v=1738001594&width=990" alt="L'ART DE K.D.M.V HATS BROWN">
+                <h3>L'ART DE K.D.M.V HATS BROWN</h3>
+            </a>
+            <p class="price">$28.00</p>
+        </div>
+    
+        <div class="product">
+            <a href="index5.html">
+                <img src="https://kdmv.io/cdn/shop/files/tee2-1.png?v=1737904968&width=720" alt="Growing Up Sucks Tee Off-White">
+                <h3>Growing Up Sucks Tee Off-White</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index6.html">
+                <img src="https://kdmv.io/cdn/shop/files/teeb1-2.png?v=1737904738&width=990" alt="Growing Up Sucks Tee Blac">
+                <h3>Growing Up Sucks Tee Black</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index7.html">
+                <img src="https://kdmv.io/cdn/shop/files/1-1.png?v=1737907292&width=990" alt="Growing Up Sucks Hoodie">
+                <h3>Growing Up Sucks Hoodie</h3>
+            </a>
+            <p class="price">$42.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index8.html">
+                <img src="https://kdmv.io/cdn/shop/files/3-1_8c214cbb-3052-4f8b-8966-9542dacaa1cc.png?v=1737905270&width=990" alt="Maxell Bootleg Hoodie">
+                <h3>Maxell Bootleg Hoodie</h3>
+            </a>
+            <p class="price">$42.00</p>
+        </div>
+    
+        <div class="product">
+            <a href="index9.html">
+                <img src="https://kdmv.io/cdn/shop/files/tee1.png?v=1737905032&width=990" alt="Maxell Bootleg Tee Off-white">
+                <h3>Maxell Bootleg Tee Off-white</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index10.html">
+                <img src="https://kdmv.io/cdn/shop/files/teec1-1.png?v=1737905110&width=990" alt="Maxell Bootleg Tee Charcoal black">
+                <h3>Maxell Bootleg Tee Charcoal</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+        
+
+        <div class="product">
+            <a href="index11.html">
+                <img src="https://kdmv.io/cdn/shop/files/tee3-2.png?v=1737907846&width=720" alt="KDMH V2 Tee Off-White">
+                <h3>KDMH V2 Tee Off-White
+                </h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+        <div class="product">
+            <a href="index12.html">
+                <img src="https://kdmv.io/cdn/shop/files/teeb2-1.png?v=1737908216&width=990" alt="KDMH V2 Tee Black">
+                <h3>KDMH V2 Tee black</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+    
+        <div class="product">
+            <a href="index13,html">
+                <img src="https://kdmv.io/cdn/shop/files/2-1_5846bf2a-bf61-4738-8e60-d59afb60e67c.png?v=1737907646&width=990" alt="KDMH Hoodie">
+                <h3>KDMH Hoodie</h3>
+            </a>
+            <p class="price">$42.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index14.html">
+                <img src="https://kdmv.io/cdn/shop/files/fixed_photos_0005_4-1.jpg?v=1734606519&width=990" alt="Oreo Tee Charcoal">
+                <h3>Oreo Tee Charcoal</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index15.html">
+                <img src="https://kdmv.io/cdn/shop/files/fixed_photos_0008_Layer_2.jpg?v=1734606503&width=990" alt="Oreo Tee Off-white">
+                <h3>Oreo Tee Off-white</h3>
+            </a>
+            <p class="price">$30.00</p>
+       
+        </div>
+        
+        
+    
+        <div class="product">
+            <a href="index16.html">
+                <img src="https://kdmv.io/cdn/shop/files/fixed_photos_0011_Layer_0.jpg?v=1734606539&width=990" alt="Grillz Tee black and White">
+                <h3>Grillz Tee</h3>
+            </a>
+            <p class="price">$30.00</p>
+        </div>
+        <div class="product">
+            <a href="index17.html">
+                <img src="https://kdmv.io/cdn/shop/files/gif_kdmvo_2.gif?v=1732827289&width=720" alt="KDMV O's">
+                <h3>KDMV O's</h3>
+            </a>
+            <p class="price">$130.00</p>
+        </div>
+
+        <div class="product">
+            <a href="index18.html">
+                <img src="https://kdmv.io/cdn/shop/files/3-2_7b869728-f98e-4ef4-8732-b2fa539ec45d.jpg?v=1732599930&width=990" alt="Last Frontier Hoodie Washed Black">
+                <h3>Last Frontier Hoodie Washed Black</h3>
+            </a>
+            <p class="price">$50.00</p>
+        </div>
+        
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('current-time').textContent = timeString;
+        }
+
+       
+        setInterval(updateTime, 1000);
+
+     
+       
+        updateTime();
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0'); 
+            const minutes = now.getMinutes().toString().padStart(2, '0'); 
+            const seconds = now.getSeconds().toString().padStart(2, '0'); 
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('current-time').textContent = timeString;
+        }
+
+       
+        setInterval(updateTime, 1000);
+
+       
+        updateTime();
+
+    // បញ្ជាក់ឈ្មោះឯកសារ products
+        const products = [
+            
+            "cap.html",
+            "checkout.html",
+            "hoodi.html",
+            "kdmh hoodie.html",
+            "dhl pocket tee black.html",
+            "grillz tee black and white.html",
+            "growing up sucks hoodie.html",
+            "growing up sucks tee back.html",
+            "growing up sucks tee Off-white.html",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        ];
+
+        const productList = document.getElementById("product-list");
+
+        // Generate list dynamically
+        products.forEach(product => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = "Products/" + product;
+            a.textContent = product.replace(".html", ""); // Remove .html
+            li.appendChild(a);
+            productList.appendChild(li);
+        });
+    </script>
+       
+
+
+</body>
+</html>

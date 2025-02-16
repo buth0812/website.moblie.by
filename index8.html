@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>k.d.m.v - Maxell Bootleg Hoodie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      padding: 20px;
+      background-color: #fff;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    header .back-button, header .basket-button {
+      color: black;
+      font-size: 24px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      font-weight: bold;
+    }
+    header .back-button:hover {
+      text-decoration: underline;
+    }
+    header .basket-button {
+      font-size: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: 20px;
+    }
+    .product {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin: 0 20px;
+    }
+    .product h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .product p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .product .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .product .size {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .product .size label {
+      margin-right: 10px;
+    }
+    .product .size select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .product .buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .product .buttons button {
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      margin: 10px 0;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+    .product .buttons button:hover {
+      background-color: #555;
+      transform: scale(1.05);
+    }
+    .image-gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 30px;
+      width: 300px;
+    }
+    .image-gallery .large-image {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .image-gallery img {
+      width: 250px;
+      height: auto;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .main-image:hover {
+      transform: scale(1.5);
+    }
+    .image-gallery .small-images {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 250px;
+    }
+    .image-gallery .small-images img {
+      width: 115px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .image-navigation {
+      display: flex;
+      justify-content: space-between;
+      width: 250px;
+      margin-top: 10px;
+    }
+    .image-navigation button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .image-navigation button:hover {
+      background-color: #555;
+    }
+
+    /* Basket Styling on the Right Side */
+    .basket-wrapper {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      z-index: 1000;
+      border-radius: 10px 0 0 10px;
+      transition: all 0.3s ease;
+    }
+
+    .basket-wrapper.open {
+      display: block;
+    }
+
+    .basket-wrapper h3 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .basket-wrapper .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .basket-wrapper .close-btn:hover {
+      background-color: #555;
+    }
+
+    .basket-wrapper .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 15px 0;
+    }
+
+    .basket-wrapper .item img {
+      width: 60px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    .basket-wrapper .item-details {
+      flex-grow: 1;
+    }
+
+    .basket-wrapper .item-details span {
+      display: block;
+      color: #555;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .basket-wrapper .item-details .item-name {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .basket-wrapper .item .item-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Quantity Control Styling */
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-controls button {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+
+    .quantity-controls span {
+      margin: 0 10px;
+      font-size: 18px;
+    }
+
+    .basket-wrapper .total-price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: right;
+      color: #000;
+    }
+
+    .basket-wrapper .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .basket-wrapper .actions button {
+      padding: 12px 25px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
+    .basket-wrapper .actions button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="Index.html" class="back-button">BACK</a>
+    <a href="javascript:void(0);" class="basket-button" onclick="toggleBasket()">🛒</a>
+  </header>
+  <div class="container">
+    <div class="image-gallery">
+      <div class="large-image">
+        <!-- Main Image with zoom effect -->
+        <img id="mainImage" src="https://kdmv.io/cdn/shop/files/3-1_8c214cbb-3052-4f8b-8966-9542dacaa1cc.png?v=1737905270&width=990"  alt="Maxell Bootleg Hoodie" class="main-image">
+      </div>
+      <div class="small-images">
+        <img src="https://kdmv.io/cdn/shop/files/3-1_8c214cbb-3052-4f8b-8966-9542dacaa1cc.png?v=1737905270&width=990" alt="Front View" onclick="changeImage('https://kdmv.io/cdn/shop/files/3-1_8c214cbb-3052-4f8b-8966-9542dacaa1cc.png?v=1737905270&width=990')">
+        <img src=" https://kdmv.io/cdn/shop/files/3-2_cff52da4-f160-4352-951b-e6fffda5cc86.png?v=1737907197&width=990" alt="Back View" onclick="changeImage('https://kdmv.io/cdn/shop/files/3-2_cff52da4-f160-4352-951b-e6fffda5cc86.png?v=1737907197&width=990')">
+      </div>
+    </div>
+    <div class="product">
+      <h2>Maxell Bootleg Hoodie</h2>
+      <p>SIZE CHART</p>
+      <div class="price">$42.00</div>
+      <div class="size">
+        <label for="size">Size:</label>
+        <select id="size">
+          <option value="s">Small</option>
+          <option value="m">Medium</option>
+          <option value="l">Large</option>
+          <option value="xl">Extra Large</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="basket-wrapper" id="basketWrapper">
+    <button class="close-btn" onclick="toggleBasket()">X</button>
+    <h3>Shopping Cart</h3>
+    <div id="basketItems"></div>
+    <div id="totalPrice" class="total-price">Total: $0.00</div>
+    <div class="actions">
+        <button onclick="checkout()">Checkout</button>
+       
+      </div>
+      
+
+  <script>
+    function toggleBasket() {
+      const basket = document.getElementById('basketWrapper');
+      basket.classList.toggle('open');
+      displayBasket();
+    }
+
+    function changeImage(url) {
+      document.getElementById('mainImage').src = url;
+    }
+
+    function addToCart() {
+      const size = document.getElementById("size").value;
+      const price = 42.00;
+      const item = {
+        name: "Maxell Bootleg Hoodie",
+        price: price,
+        size: size,
+        img: document.getElementById('mainImage').src,
+        quantity: 1
+      };
+
+      let cart = JSON.parse(localStorage.getItem('basket')) || [];
+      cart.push(item);
+      localStorage.setItem('basket', JSON.stringify(cart));
+      alert("Item added to cart!");
+    }
+
+    function displayBasket() {
+      const basket = JSON.parse(localStorage.getItem('basket')) || [];
+      const basketItems = document.getElementById('basketItems');
+      const totalPrice = document.getElementById('totalPrice');
+      basketItems.innerHTML = '';
+      let total = 0;
+
+      if (basket.length === 0) {
+        basketItems.innerHTML = '<div class="empty-message">Your cart is empty!</div>';
+        totalPrice.innerHTML = 'Total: $0.00';
+        return;
+      }
+
+      basket.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
+
+        const itemContent = `
+          <img src="${item.img}" alt="${item.name}">
+          <div class="item-details">
+            <span class="item-name">${item.name}</span>
+            <span class="item-size">Size: ${item.size}</span>
+            <div class="quantity-controls">
+              <button onclick="updateQuantity(${index}, 'decrease')">-</button>
+              <span>${item.quantity}</span>
+              <button onclick="updateQuantity(${index}, 'increase')">+</button>
+            </div>
+          </div>
+          <div class="item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+        `;
+        itemDiv.innerHTML = itemContent;
+        basketItems.appendChild(itemDiv);
+
+        total += item.price * item.quantity;
+      });
+
+      totalPrice.innerHTML = `Total: $${total.toFixed(2)}`;
+    }
+
+    function updateQuantity(index, action) {
+      const cart = JSON.parse(localStorage.getItem('basket')) || [];
+      const item = cart[index];
+      
+      if (action === 'increase') {
+        item.quantity += 1;
+      } else if (action === 'decrease') {
+        item.quantity -= 1;
+      }
+
+      if (item.quantity <= 0) {
+        cart.splice(index, 1);
+      }
+
+      localStorage.setItem('basket', JSON.stringify(cart));
+      displayBasket();
+    }
+
+    function checkout() {
+      alert("Proceeding to checkout...");
+    }
+
+    function continueShopping() {
+      toggleBasket();
+    }
+    function checkout() {
+  // Redirect to the checkout page
+  window.location.href = "index24.html"; // Update this with the actual checkout page URL
+}
+
+function continueShopping() {
+ window.location.href = "index19.html"
+  toggleBasket();
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff; 
+            color: #000000; 
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            height: 100vh;
+        }
+
+        .left-container, .right-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #ffffff; 
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #000000; 
+        }
+
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+            color: #000000; 
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #000000; 
+            border-radius: 5px;
+            background-color: #ffffff; 
+            color: black; 
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .input-group input {
+            flex: 1;
+            margin-bottom: 10px;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox input {
+            width: auto;
+        }
+
+        .shipping-method-section {
+            background-color: #f7f7f7; 
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .shipping-method-details {
+            flex-grow: 1;
+        }
+
+        .shipping-method-price {
+            font-weight: bold;
+            color: #000000; 
+        }
+
+        .payment-option {
+            background-color: #f7f7f7; 
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+        }
+
+        .payment-option input[type="radio"] {
+            accent-color: #000000;
+            transform: scale(1.2);
+            margin-right: 10px;
+        }
+
+        .payment-option:hover {
+            border-color: #007bff;
+        }
+
+        .payment-option-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .payment-option-header label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .payment-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-icons img {
+            width: 30px;
+            height: auto;
+        }
+
+        .payment-details {
+            text-align: center;
+            color: #000000; 
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .payment-details img {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        .order-summary {
+            background-color: #f7f7f7; 
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .item-details {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .item-name {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .size, .price {
+            font-size: 12px;
+            color: #333;
+        }
+
+        .pricing, .total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .pay-now, .back-to-basket {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .pay-now:hover, .back-to-basket:hover {
+            background-color: #2980b9;
+        }
+
+        .pay-now {
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-btn {
+            display: inline-block;
+            font-weight: bold;
+            color: black; 
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            color: #3498db;
+        }
+
+        /* Mobile Specific Styles */
+        @media screen and (max-width: 768px) {
+            .left-container, .right-container {
+                width: 100%;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .checkbox {
+                flex-direction: column;
+            }
+
+            .shipping-method-section, .payment-option, .order-summary {
+                flex-direction: column;
+            }
+
+            .item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .item img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="left-container">
+        <div class="container">
+            <h2>Delivery</h2>
+            <form>
+                <label for="country">Country/Region</label>
+                <select id="country" name="country">
+                    <option value="Cambodia" selected>Cambodia</option>
+                </select>
+
+                <div class="input-group">
+                    <input type="text" id="first-name" name="first-name" placeholder="First name">
+                    <input type="text" id="instagram" name="instagram" placeholder="Instagram @">
+                </div>
+
+                <input type="text" id="address" name="address" placeholder="Address">
+
+                <div class="input-group">
+                    <input type="text" id="city" name="city" placeholder="City">
+                    <input type="text" id="postal-code" name="postal-code" placeholder="Postal code (optional)">
+                </div>
+
+                <input type="text" id="phone" name="phone" placeholder="Phone">
+
+                <label for="gmail">Gmail</label>
+                <input type="email" id="gmail" name="gmail" placeholder="Enter your Gmail" pattern=".+@gmail\.com" required>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="save-info">
+                    <label for="save-info">Save this information for next time</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+            <h2>Shipping Method</h2>
+            <div class="shipping-method-section">
+                <div class="shipping-method-details">
+                    <div class="text">Local Delivery (2-3 Days)</div>
+                    <div class="subtext">Phnom Penh Only</div>
+                </div>
+                <div class="shipping-method-price">Free</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Payment</h2>
+            <div class="payment-option">
+                <div class="payment-option-header">
+                    <div>
+                        <input type="radio" id="online-payment" name="payment" checked onclick="togglePaymentDetails()">
+                        <label for="online-payment">Online Payments</label>
+                    </div>
+                </div>
+                <div id="online-payment-details" class="payment-details">
+                    <p>After clicking "Pay now," you will be redirected to Online Payments to complete your purchase securely.</p>
+                </div>
+            </div>
+
+            <div class="payment-option">
+                <div class="payment-option-header">
+                    <div>
+                        <input type="radio" id="cod" name="payment" onclick="togglePaymentDetails()">
+                        <label for="cod">Cash on Delivery</label>
+                    </div>
+                </div>
+                <div id="cod-details" class="payment-details hidden">
+                    <p>Payment will be done upon delivery. No credit card is needed for checkout..</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">Back</a>
+    </div>
+
+    <div class="right-container">
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="checkoutCartItems"></div>
+
+            <div class="pricing">
+                <p>Total</p>
+                <p id="checkoutTotalPrice">USD $0.00</p>
+            </div>
+
+            <button class="pay-now" onclick="submitOrder()">Pay now</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('basket')) || [];
+
+        function renderCheckoutItems() {
+            const checkoutCartContainer = document.getElementById("checkoutCartItems");
+            const checkoutTotalPriceElement = document.getElementById("checkoutTotalPrice");
+            checkoutCartContainer.innerHTML = "";
+
+            if (cart.length === 0) {
+                checkoutCartContainer.innerHTML = "<p>Your basket is empty. Start adding items!</p>";
+                checkoutTotalPriceElement.textContent = "Total: $0.00";
+                return;
+            }
+
+            let totalPrice = 0;
+
+            cart.forEach((item) => {
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("item");
+                cartItem.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="item-details">
+                        <p class="item-name">${item.name}</p>
+                        <p class="size">Size: ${item.size}</p>
+                        <p class="price">Price: $${item.price.toFixed(2)}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                    </div>
+                `;
+                checkoutCartContainer.appendChild(cartItem);
+
+                totalPrice += item.price * item.quantity;
+            });
+
+            checkoutTotalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
+        }
+
+        function submitOrder() {
+            alert("Thank you for your order! Your items will be shipped soon.");
+            localStorage.removeItem('basket');
+            window.location.href = "index23.html";
+        }
+
+        function togglePaymentDetails() {
+            const onlineDetails = document.getElementById("online-payment-details");
+            const codDetails = document.getElementById("cod-details");
+
+            if (document.getElementById("online-payment").checked) {
+                onlineDetails.classList.remove("hidden");
+                codDetails.classList.add("hidden");
+            } else {
+                onlineDetails.classList.add("hidden");
+                codDetails.classList.remove("hidden");
+            }
+        }
+
+        renderCheckoutItems();
+    </script>
+</body>
+</html>

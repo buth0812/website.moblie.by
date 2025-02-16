@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 30px;
+            font-size: 14px;
+        }
+
+        .invoice-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #000000;
+            margin-bottom: 15px;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .company-info {
+            font-size: 16px;
+        }
+
+        .invoice-details {
+            font-size: 16px;
+        }
+
+        .invoice-item {
+            margin-bottom: 10px;
+        }
+
+        .invoice-item strong {
+            font-weight: bold;
+        }
+
+        .order-items {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .order-items .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .order-items img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-name {
+            font-weight: bold;
+        }
+
+        .total-price {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .back-btn {
+            display: inline-block;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            margin-top: 30px;
+        }
+
+        .back-btn:hover {
+            color: #3498db;
+        }
+
+        .terms {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="invoice-container">
+    <h2>Invoice</h2>
+    <div class="invoice-header">
+        <div class="company-info">
+            <h3>TrendVerse</h3>
+            <p>Address: Sangkhat PhnomPenh Tmey, Khan SenSok, Phnom Penh </p>
+            <p>Email: TrendVerse@.gmailcom  </p>
+            <p>Phone: (+855) 081272999 </p>
+        </div>
+        <div class="invoice-details">
+            <p><strong>Invoice #:</strong> INV-000001</p>
+            <p><strong>Date:</strong> February 15, 2025</p>
+            <p><strong>Due Date:</strong> February 22, 2025</p>
+        </div>
+    </div>
+
+    <div id="invoiceDetails"></div>
+
+    <div class="order-items" id="orderItems"></div>
+    <div class="total-price" id="totalPrice"></div>
+
+    <div class="terms">
+        <p><strong>Terms & Conditions:</strong></p>
+        <p>- Payment due by the due date.</p>
+        <p>- Late payment may incur additional fees.</p>
+        <p>- All sales are final unless otherwise stated.</p>
+    </div>
+
+    <a href="index.html" class="back-btn">Back to Checkout</a>
+</div>
+
+<script>
+    // Retrieve order data from localStorage
+    const orderData = JSON.parse(localStorage.getItem('orderData'));
+
+    if (orderData) {
+        const invoiceDetails = document.getElementById('invoiceDetails');
+        const orderItems = document.getElementById('orderItems');
+        const totalPrice = document.getElementById('totalPrice');
+
+        // Display customer details
+        invoiceDetails.innerHTML = `
+            <div class="invoice-item"><strong>Customer Name:</strong> ${orderData.firstName} ${orderData.lastName}</div>
+            <div class="invoice-item"><strong>Email:</strong> ${orderData.email}</div>
+            <div class="invoice-item"><strong>Phone:</strong> ${orderData.phone}</div>
+            <div class="invoice-item"><strong>Address:</strong> ${orderData.address}</div>
+            <div class="invoice-item"><strong>City:</strong> ${orderData.city}</div>
+            <div class="invoice-item"><strong>Postal Code:</strong> ${orderData.postalCode || "N/A"}</div>
+            <div class="invoice-item"><strong>Shipping Method:</strong> ${orderData.shippingMethod}</div>
+            <div class="invoice-item"><strong>Payment Method:</strong> ${orderData.paymentMethod}</div>
+        `;
+
+        // Display the items in the cart
+        if (orderData.cart && orderData.cart.length > 0) {
+            let itemsHtml = "";
+            let total = 0;
+
+            orderData.cart.forEach(item => {
+                itemsHtml += `
+                    <div class="item">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="item-details">
+                            <p class="item-name">${item.name}</p>
+                            <p>Size: ${item.size}</p>
+                            <p>Price: $${item.price.toFixed(2)}</p>
+                            <p>Quantity: ${item.quantity}</p>
+                        </div>
+                    </div>
+                `;
+                total += item.price * item.quantity;
+            });
+
+            orderItems.innerHTML = itemsHtml;
+            totalPrice.innerHTML = `Total Amount Due: $${total.toFixed(2)}`;
+        } else {
+            orderItems.innerHTML = "<p>No items in your cart.</p>";
+            totalPrice.innerHTML = "Total Amount Due: $0.00";
+        }
+    } else {
+        document.body.innerHTML = "<h2>No order data found.</h2>";
+    }
+</script>
+
+</body>
+</html>
